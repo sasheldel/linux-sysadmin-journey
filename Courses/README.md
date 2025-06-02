@@ -15,3 +15,6 @@ Each course has its own folder with:
 - Jason Cannon: Master Linux Shell Scripting
 - Linux Administration Bootcamp (Udemy)
 - Paul Cobbaut: Linux Fundamentals (Book)
+- Mastering Linux: The Comprehensive Guide (Udemy)
+-  Linux: Files and Permissions by Grant McWilliams (Linkedin) 
+
