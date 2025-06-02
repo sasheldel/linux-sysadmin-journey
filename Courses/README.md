@@ -18,3 +18,16 @@ Each course has its own folder with:
 - Mastering Linux: The Comprehensive Guide (Udemy)
 -  Linux: Files and Permissions by Grant McWilliams (Linkedin) 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Create Courses folder and README.md
