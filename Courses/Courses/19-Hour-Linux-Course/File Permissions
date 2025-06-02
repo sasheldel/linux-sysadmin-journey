@@ -1,0 +1,57 @@
+# 🔐 Linux File Permissions Guide
+
+## 📌 Basic Concepts
+
+Every file and directory in Linux has three permission categories:
+
+- **User (u)**: Owner of the file
+- **Group (g)**: Group associated with the file
+- **Others (o)**: Everyone else
+
+Each category has three permissions:
+- **r** – read
+- **w** – write
+- **x** – execute
+
+### Example:
+```bash
+-rwxr-xr-- 1 user group 1234 Jan 1 12:00 example.sh
+chmod – Change permissions
+chmod 755 file.txt      # rwxr-xr-x
+chmod u+x script.sh     # Add execute for user
+chmod go-w file.txt     # Remove write for group & others
+chown – Change file owner/group 
+chown user:group file.txt
+chgrp – Change group chgrp groupname file.txt
+🧪 Special Permissions
+
+📍 SetUID (s)
+	•	Executes the file as the file’s owner
+chmod u+s script.sh
+📍 SetGID (s)
+	•	Executes as group OR new files inherit the group
+chmod g+s directory/
+📍 Sticky Bit (t)
+	•	On directories: Only owner can delete their files
+chmod +t /tmp
+🔍 Viewing Permissions
+ls -l                # View permission string
+stat file.txt        # Detailed metadata
+🗂 ACLs – Access Control Lists
+setfacl -m u:john:rwx file.txt
+getfacl file.txt
+🧠 Tips for Remembering
+	•	Use ls -l often to build familiarity.
+	•	Practice changing and breaking permissions in a test directory.
+	•	Understand the numeric values:
+	•	r=4, w=2, x=1
+	•	So chmod 754 = rwxr-xr--
+
+⸻
+
+✅ Progress Checklist
+	•	Understand read, write, execute
+	•	Practice with chmod and numeric values
+	•	Practice with SetUID, SetGID, Sticky Bit
+	•	Learn and apply ACLs
+	•	Complete a permission-based project
