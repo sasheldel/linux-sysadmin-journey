@@ -28,5 +28,5 @@ This repository tracks my journey to mastering Linux and becoming a System Admin
 
 ## 📅 Timeline
 
-Started: 2025-05-XX  
-Target System Admin Job-Readiness: 2025-12-XX  
+Started: 2025-05-20  
+Target System Admin Job-Readiness: 2025-12-31 
