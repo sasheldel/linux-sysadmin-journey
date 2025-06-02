@@ -1,0 +1,25 @@
+# 👤 Linux User Management Notes
+
+## Commands I've Learned:
+
+- `adduser lisa` – creates a user
+- `usermod -d /home/lisa lisa` – assigns a home directory
+- `passwd lisa` – sets a password
+
+## Troubleshooting:
+
+- Issue: "User doesn't have a home directory"  
+  → Fix: `sudo mkdir /home/lisa && sudo chown lisa:lisa /home/lisa`
+
+- Issue: Can't `su - lisa`  
+  → Make sure the shell is set in `/etc/passwd` and that a password is set.
+
+## Concepts:
+
+- `/etc/passwd` – Stores basic user info  
+- `/etc/shadow` – Stores encrypted passwords  
+- `/etc/group` – Stores group memberships  
+- `/etc/gshadow` – Stores group passwords
+
+## Next Step:
+- Write a Bash script that creates users and sets default directories and permissions.
