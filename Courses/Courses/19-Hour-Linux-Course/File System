@@ -1,0 +1,20 @@
+# 📁 Chapter 3: Navigating the Linux File System (My Notes)
+
+## 🌲 Understanding the File System Layout
+
+- The root directory `/` is like the base of everything — all files and folders live under it.
+- Key folders:
+  - `/bin`: Basic commands like `ls`, `cp`, `mv`.
+  - `/etc`: System-wide settings and config files.
+  - `/home`: Where each user’s personal folder lives, like `/home/ryan`.
+  - `/var`: Log files and dynamic content.
+  - `/tmp`: Temporary files, often cleared at reboot.
+  - `/usr`: Where user apps and utilities go.
+  - `/dev`: Represents devices like USB drives.
+  - `/mnt` and `/media`: Where external drives get mounted.
+  - `/opt`: Extra apps not part of the main OS.
+
+## 📍 Paths — Absolute vs. Relative
+
+- **Absolute path** starts from `/` (root). Example: `/home/sasakovich/Documents`.
+- **Relative path** is from wherever you are now.
