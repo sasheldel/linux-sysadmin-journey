@@ -1,0 +1,175 @@
+# 🛠️ Linux Text Processing Notes (Grep, Sed, Awk, Regex)
+
+These notes are part of my ongoing journey as I complete the [19-Hour Linux Admin Course](https://youtu.be/avg65oY7sj4?si=FelLaQaGYd3Rbmcm). Linux Text Processing Mastery: Grep, Sed, Awk, and Regex
+
+These notes are part of my study of the 19-Hour Linux Admin Course. This guide summarizes my hands-on experience and key takeaways from learning powerful command-line text processing tools in Linux.
+
+---
+
+## 🔍 `grep` — The Pattern Finder
+grep [options] PATTERN [FILE...]
+
+- Search for patterns inside files.
+- Flags:
+  - `-i`: ignore case
+  - `-r`: recursive
+  - `-v`: invert match
+  - `-E`: extended regex
+  
+
+**Example:**
+```bash
+grep -i "error" /var/log/syslog
+grep 'error' /var/log/syslog
+grep -i 'sa’shel' users.txt
+grep -v '^#' config.conf  # Exclude comments
+grep -r '192.168' /etc/network
+
+
+
+
+
+✂️ sed — Stream Editor
+Reads input line-by-line and applies transformations (substitution, deletion, insertion).
+sed [options] 'command' file
+
+Common Commands:
+
+s/pattern/replacement/ – Substitute
+
+/pattern/d – Delete matching lines
+
+-n 'N,p' – Print only specific lines
+
+-i – Edit files in-place
+
+Delimiter flexibility: Use : or | instead of / if the pattern contains slashes.
+
+Special Characters:
+
+$ – End of line
+
+^ – Start of line
+
+	•	Edit files or streams with patterns.
+	•	Common actions:
+	•	Substitution: s/old/new/
+	•	Deletion: /pattern/d
+	•	Print specific lines: -n '2,4p'
+
+Example: sed 's/foo/bar/g' file.txt
+
+
+📊 awk — Text Analysis Beast
+	•	Reads and processes columns and rows (like a mini spreadsheet). 📊 awk – Text Scanning & Reporting
+
+What it does:
+awk 'pattern { action }' file
+Processes structured text using patterns and actions. Great for columns.
+	•	Fields: $1, $2, …, $NF
+	•	Custom separators: -F ","
+awk -F ":" '{ print $1 " => " $7 }' /etc/passwd
+Built-in Variables:
+
+$1, $2, ..., $NF: Fields (columns)
+
+NF: Number of fields
+
+NR: Number of records (lines)
+
+FS: Field Separator
+
+OFS: Output Field Separator
+Examples:
+awk '{ print $1 }' users.txt
+awk -F":" '{ print $1, $7 }' /etc/passwd
+awk 'BEGIN { FS=","; OFS=" - " } { print $2, $1 }' users.csv
+awk '$1 ~ /Sa/ && NF == 3 { print $0 }' users.txt
+
+🔁 Regular Expressions (Regex)
+
+Used in grep, awk, sed, and vim.
+
+Basics:
+	•	. — any character
+	•	^ — start of line
+	•	$ — end of line
+	•	[] — match set of characters
+	•	.* — wildcard
+	•	\ — escape character
+ What it does:
+
+Describes string patterns for powerful matching logic.
+
+Basic Meta-characters:
+
+. – Any character
+
+* – Zero or more
+
++ – One or more (use with grep -E)
+
+? – Zero or one
+
+^ – Start of line
+
+$ – End of line
+
+[] – Match any one character inside brackets
+
+[^] – Match any one character NOT inside brackets
+
+| – OR operator
+
+
+grep "^Sa" users.txt
+grep '^Sa' names.txt         # Starts with "Sa"
+grep 'sh.*el' names.txt      # Match sh...el (wildcard)
+grep '[0-9]' file.txt        # Contains a number
+grep '[^a-zA-Z]' file.txt    # Contains non-letter
+
+Used In:
+
+grep for pattern search
+
+sed for find/replace
+
+awk for conditional logic
+
+vim for searching/editing text
+
+🧠 Summary
+
+Tool
+
+Purpose
+
+Strengths
+
+grep
+
+Find text using patterns
+
+Fast search, highlight matches
+
+sed
+
+Modify text in-place
+
+Substitute, delete, batch editing
+
+awk
+
+Format & analyze fields
+
+Report generation, conditionals
+
+regex
+
+Define search patterns
+
+Flexible and reusable logic patterns
+
+
+
+
