@@ -142,3 +142,202 @@ chown user:group file.txt
 ---
 
 Let me know if you want help adding this to your actual GitHub repo or linking it inside your README.
+🧪 Symbolic Permissions - Advanced Flags
+
+You can use = to set permissions exactly (removes all others):
+chmod u=rwx,g=rx,o= file.txt
+Breakdown:
+	•	User: read, write, execute
+	•	Group: read, execute
+	•	Others: none
+🧬 Default Permissions & umask
+
+When new files or directories are created, their default permissions are controlled by umask.
+Type
+Default permscCommon umask    FiFile
+666
+022
+644
+Directory
+777
+022
+755
+
+
+umask
+
+Set temporarily (e.g., in a script):
+umask 077  # All new files will be private (600)
+
+🚫 Prevent Directory Listing (Security Trick)
+
+If you want people to access files only if they know the exact filename but not list them:
+chmod 701 private_dir
+📌 View Permissions Recursively
+
+To list all files and their permissions under a directory:
+find . -type f -exec ls -l {} \;
+find / -type f -perm -002 2>/dev/null
+
+🔒 Tighten Down Files
+
+Lock down a file so only the owner can read/write: chmod 600 secrets.txt
+
+chmod -R 755 my_project/
+chown -R sa:shell my_project/
+🧠 Hidden Insights
+	•	You can mix numeric and symbolic methods across scripts.
+	•	Always double-check permissions with stat or ls -l before and after changes.
+	•	Sticky bits are common in /tmp or shared group folders to avoid accidental deletions.
+	•	On modern Linux systems, ACLs (Access Control Lists) may override traditional permissions. Use getfacl and setfacl for those cases.
+
+⸻
+
+🛠️ Real-World Examples
+
+Task
+
+Command
+
+Script won’t run
+
+chmod +x script.sh
+
+Share a folder with a group
+
+chgrp dev folder && chmod g+rwX folder
+
+Secure a config file
+
+chmod 600 config.yml
+
+Assign ownership to a user
+
+chown user:group file.txt
+
+🧠 Cheatsheet Summary
+
+Command
+
+Purpose
+
+Example
+
+chmod
+
+Modify permissions
+
+chmod 755 file
+
+chown
+
+Change owner/group
+
+chown sa:staff file
+
+chgrp
+
+Change group only
+
+chgrp users shared.txt
+
+ls -l
+
+View permission string
+
+ls -l /var/log/syslog
+
+stat
+
+View numeric permissions
+
+stat /etc/passwd
+
+📦 Addendum: Pro-Level Permission Tips
+
+🧬 Default Permissions & umask
+
+When new files or directories are created, their default permissions are controlled by umask.
+
+Type
+
+Default perms
+
+Common umask
+
+Final perms
+
+File
+
+666
+
+022
+
+644
+
+Directory
+
+777
+
+022
+
+755
+
+umask          # Check your current umask
+umask 077      # Private by default
+
+🚫 Prevent Directory Listing
+
+Allow file access by path but block ls:
+
+chmod 701 secure_dir/
+
+🔄 Recursive Permission Changes
+
+chmod -R 755 folder/
+chown -R user:group folder/
+
+⚠️ Always check the scope of -R (recursive) operations.
+
+🔍 Find Permission Issues
+
+find . -type f -perm -002   # World-writable files
+find . -type f ! -perm 644  # Not standard file perms
+
+📁 Hidden Ownership/ACL Issues
+
+Use getfacl and setfacl for advanced permissions beyond chmod/chown.
+
+Great for setting different permissions per user/group on the same file.
+
+⚙️ Bonus Symbolic Examples
+
+chmod u=rwx,g=rx,o= file.txt  # Set exact permissions
+chmod a+x *.sh                # Make all scripts executable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\\chmod 755 -R ~/public_html
+
+
