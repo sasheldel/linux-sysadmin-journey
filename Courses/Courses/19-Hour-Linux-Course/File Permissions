@@ -55,3 +55,90 @@ getfacl file.txt
 	•	Practice with SetUID, SetGID, Sticky Bit
 	•	Learn and apply ACLs
 	•	Complete a permission-based project
+# 🔐 Linux File Permissions & Ownership
+
+These notes are part of my hands-on learning journey as I study to become a Linux System Administrator. This guide covers file permissions, ownership, and special modes in Linux—along with examples, tips, and real-world use cases.
+
+---
+
+## 📖 Understanding Linux Permissions
+
+Every file and directory has three permission sets:
+
+| Class     | Applies to         |
+|-----------|--------------------|
+| `User`    | File owner         |
+| `Group`   | Group assigned     |
+| `Others`  | Everyone else      |
+
+Each class can have:
+- `r` – Read
+- `w` – Write
+- `x` – Execute
+
+Example:
+```bash
+-rwxr-xr-- 1 user group 1234 Jun 10 12:00 my_script.sh
+
+ Using chmod – Change File Permissions
+
+Octal (Numeric) Format:
+rwx.      Value
+—         0
+–x        1
+-w        2
+-wx       3
+r–        4
+r-x       5
+rw-       6
+rwx       7
+
+Symbolic Format:
+chmod 755 file.sh  # rwx for user, rx for group & others
+chmod u+x file.sh      # Add execute to user
+chmod go-w config.txt  # Remove write from group & others
+chmod a+r notes.md     # Add read for all
+👤 chown – Change File Ownership:
+chown username:group file.txt
+
+chown root:root /etc/passwd
+chown sa:shell files.txt
+
+🧑‍🤝‍🧑 chgrp – Change Group Ownership:
+chgrp developers script.py
+
+📁 Directory Permissions
+Permission
+Meaning
+r-View contents
+w-Create/delete files
+x-Enter directory (cd)
+⚠️ Without x, you can’t even cd into a readable directory!
+
+
+
+🧙 Special Bits
+Bit     Symbol    Purpose
+Setuid.   s    Execute as file owner
+Setgid.   s    New files inherit group
+Sticky    t    Only file owner can delete in dir
+chmod +s file       # setuid
+chmod g+s folder    # setgid
+chmod +t /tmp       # sticky bit
+ls -l file.txt
+ls -ld directory/
+stat my_script.sh
+Task
+Command
+Script won’t run
+chmod +x script.sh
+Share a folder with a group
+chgrp dev folder && chmod g+rwX folder
+Secure a config file
+chmod 600 config.yml
+Assign ownership to a user
+chown user:group file.txt
+
+---
+
+Let me know if you want help adding this to your actual GitHub repo or linking it inside your README.
