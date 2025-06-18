@@ -98,27 +98,6 @@ Up next in the series: 🧰 Exploring find, xargs, and cut for power searching a
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 🌲 Understanding the File System Layout
 
 - The root directory `/` is like the base of everything — all files and folders live under it.
