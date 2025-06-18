@@ -116,3 +116,255 @@ Up next in the series: 🧰 Exploring find, xargs, and cut for power searching a
 
 - **Absolute path** starts from `/` (root). Example: `/home/sasakovich/Documents`.
 - **Relative path** is from wherever you are now.
+
+🗂️ Navigating the Linux File System & Permissions
+
+These notes are part of my hands-on learning journey as I study to become a Linux System Administrator. This guide covers file permissions, navigation, and special commands for working with files and directories in Linux—along with examples, tips, and real-world use cases.
+
+📁 Basic File System Navigation
+
+🔍 pwd – Print Working Directory
+
+pwd
+
+Shows your current directory (absolute path).
+
+🚶 cd – Change Directory
+
+cd /path/to/dir       # Go to absolute path
+cd Documents           # Go to relative path
+cd ..                  # Go up one level
+cd ~                   # Go to home directory
+cd -                   # Go back to previous directory
+
+💡 Tip: Use cd ~/Downloads to jump to your Downloads folder quickly.
+
+📂 ls – List Contents
+
+ls              # List files
+ls -l           # Long format
+ls -lh          # Human-readable sizes
+ls -a           # Show hidden files
+ls -lhS         # Sort by size
+ls -lt          # Sort by time modified
+
+💡 Tip: Use ls -lah often to see everything in a directory including file sizes.
+
+📤 File Operations
+
+📄 cp – Copy Files and Directories
+
+cp file1.txt file2.txt         # Copy file
+cp -r folder1/ folder2/        # Copy directories recursively
+
+🔀 mv – Move or Rename Files
+
+mv file.txt /backup/           # Move file
+mv oldname.txt newname.txt     # Rename file
+
+⚠️ cp copies. mv moves or renames. mv removes the original.
+
+🛠️ Using tr – Translate or Delete Characters
+
+echo "HELLO WORLD" | tr 'A-Z' 'a-z'
+
+Converts uppercase to lowercase.
+
+echo "Hello  World" | tr -s ' '
+
+-s: Squeeze repeated characters (e.g., multiple spaces to one).
+
+echo "123abc" | tr -d '0-9'
+
+-d: Delete characters in set.
+
+📁 Understanding File Paths
+
+Absolute Path: Starts from root /
+
+cd /home/sa/Documents
+
+Relative Path: Starts from current location
+
+cd ../Downloads
+
+🔗 Path Shortcuts
+
+Symbol
+
+Meaning
+
+.
+
+Current directory
+
+..
+
+Parent directory
+
+~
+
+Home directory
+
+-
+
+🗂️ Navigating the Linux File System & Permissions
+
+These notes are part of my hands-on learning journey as I study to become a Linux System Administrator. This guide covers file permissions, navigation, and special commands for working with files and directories in Linux—along with examples, tips, and real-world use cases.
+
+📁 Basic File System Navigation
+
+🔍 pwd – Print Working Directory
+
+pwd
+
+Shows your current directory (absolute path).
+
+🚶 cd – Change Directory
+
+cd /path/to/dir       # Go to absolute path
+cd Documents           # Go to relative path
+cd ..                  # Go up one level
+cd ~                   # Go to home directory
+cd -                   # Go back to previous directory
+
+💡 Tip: Use cd ~/Downloads to jump to your Downloads folder quickly.
+
+
+
+📂 ls – List Contents
+
+ls              # List files
+ls -l           # Long format
+ls -lh          # Human-readable sizes
+ls -a           # Show hidden files
+ls -lhS         # Sort by size
+ls -lt          # Sort by time modified
+
+💡 Tip: Use ls -lah often to see everything in a directory including file sizes.
+
+
+
+
+📤 File Operations
+
+📄 cp – Copy Files and Directories
+
+cp file1.txt file2.txt         # Copy file
+cp -r folder1/ folder2/        # Copy directories recursively
+
+🔀 mv – Move or Rename Files
+
+mv file.txt /backup/           # Move file
+mv oldname.txt newname.txt     # Rename file
+
+⚠️ cp copies. mv moves or renames. mv removes the original.
+
+🛠️ Using tr – Translate or Delete Characters
+
+echo "HELLO WORLD" | tr 'A-Z' 'a-z'
+
+Converts uppercase to lowercase.
+
+echo "Hello  World" | tr -s ' '
+
+-s: Squeeze repeated characters (e.g., multiple spaces to one).
+
+echo "123abc" | tr -d '0-9'
+
+-d: Delete characters in set.
+
+📁 Understanding File Paths
+
+Absolute Path: Starts from root /
+
+cd /home/sa/Documents
+
+Relative Path: Starts from current location
+
+cd ../Downloads
+
+🔗 Path Shortcuts
+
+Symbol
+
+Meaning
+
+.
+
+Current directory
+
+..
+
+Parent directory
+
+~
+
+Home directory
+
+-
+
+Last visited dir
+
+
+🔎 find – Search for Files and Directories
+
+find /path -name "*.txt"
+find . -type f -size +10M
+find / -user sa -perm 644
+
+Common Options:
+
+-name: Match file name
+
+-type f: Files only
+
+-type d: Directories only
+
+-size: File size (e.g., +1M, -100k)
+
+-mtime, -ctime: Modify/Create time (in days)
+
+-exec: Run command on found items
+
+🔗 xargs – Build and Execute Command Lines
+
+echo "file1 file2 file3" | xargs rm
+
+Turns input into arguments for commands
+
+Combine with find:
+
+find . -name "*.tmp" | xargs rm
+
+💡 Tip: Use -0 with xargs and find if filenames have spaces:
+✂️ cut – Slice Text by Fields or Characters
+
+cut -d":" -f1 /etc/passwd     # Print usernames
+cut -c1-10 file.txt            # First 10 characters of each line
+
+-d: Delimiter
+
+-f: Field
+
+-c: Character position
+
+💡 Use cut when parsing simple column data from text files.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
