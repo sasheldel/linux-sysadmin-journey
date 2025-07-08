@@ -1,1 +1,78 @@
 
+# 🧠 Linux Journey Notes – Compression, Syncing, Bash & Configuration
+
+_A curated log of commands and concepts I've practiced and documented during my Linux System Admin journey._
+
+---
+
+## 📦 Compression & Archiving
+
+### 🔸 `tar` – Archive multiple files/directories
+
+```bash
+# Archive a directory (no compression)
+tar -cvf archive.tar /path/to/dir
+
+# Archive + gzip compress
+tar -czvf archive.tar.gz /path/to/dir
+
+# Archive + bzip2 compress
+tar -cjvf archive.tar.bz2 /path/to/dir
+
+# Extract a .tar.gz file
+tar -xzvf archive.tar.gz
+
+🔸 gzip – Compress a single file
+# Compress a single file
+gzip filename.txt
+
+# Decompress
+gunzip filename.txt.gz
+
+ bzip2 – Better compression than gzip
+# Compress
+bzip2 filename.txt
+
+# Decompress
+bunzip2 filename.txt.bz2
+
+🔁 File Syncing with rsync + ssh
+
+✅ Task: Sync files from sasakovich to sastronik over SSH
+
+# Basic rsync over SSH
+rsync -avz -e ssh ~/Projects/ sasatronik@192.168.1.50:/home/sasatronik/Backups/
+
+# Explanation:
+# -a : archive mode (preserves perms, timestamps)
+# -v : verbose
+# -z : compress files during transfer
+# -e ssh : use SSH as the transport layer
+
+🧠 Bash Environment & Startup Scripts
+
+🔸 source command
+# Reload a modified .bash_profile or .bashrc
+source ~/.bash_profile
+source ~/.bashrc
+🔸 Editing Bash Profile (using nano)
+nano ~/.bash_profile
+
+# or if using .bashrc
+nano ~/.bashrc
+
+ Add custom aliases or PATH modifications:
+# Example alias
+alias ll='ls -la'
+
+# Add to PATH
+export PATH=$PATH:~/scripts
+
+
+
+
+
+
+
+
+
