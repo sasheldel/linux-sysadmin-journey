@@ -94,3 +94,4 @@ This repository tracks my journey to mastering Linux and becoming a System Admin
 
 * **Started:** 2025-05-20
 * **Target:** System Admin Job-Readiness by **2026-12-31**
+WSL connection test
