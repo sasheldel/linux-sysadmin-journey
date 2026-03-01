@@ -1,38 +1,41 @@
-#!/bin/bash
-# Author: $(whoami)
-# Date: $(date +%Y-%m-%d)
-# Description: 
+#!/bin/bash 
 
-set -euo pipefail  # Strict mode
+#File Navigator Script 
+#Author: saskovich 
+#Date: $(date +%Y-%m-%d) 
 
-# Variables
-HOSTNAME=$(hostname)
-USER=$(whoami)
-DATE=$(date "+%Y-%m-%d %H:%M:%S")
-PWD=$(pwd)
-KERNEL=$(uname -r)
-# Functions
+#Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
-# Main
-echo "System Information Report"
-echo "========================"
-echo "Hostname:        $HOSTNAME"
-echo "Current User:    $USER"
-echo "Date/Time:       $DATE"
-echo "Working Dir:     $PWD"
-echo "Kernel Version:  $KERNEL"
-
-
-# Security: Check for UID 0 users (root equivalents)
+echo -e "${GREEN}=== File Navigator ===${NC}"
+echo "User: $(whoami) | Host: $(hostname) | Date: $(date)"
 echo ""
-echo "Security Check: Root-Level Users"
-echo "================================="
-awk -F: '$3 == 0 {print "WARNING: " $1 " has UID 0 (root access)"}' /etc/passwd
 
-# Security: Check for users without passwords
+# Disk usage
+echo -e "${RED}Disk Usage:${NC}"
+df -h | grep -E "(Filesystem|/dev/)"
+
 echo ""
-echo "Security Check: Password Status"
-echo "================================"
-sudo awk -F: '$2 == "" {print "WARNING: " $1 " has no password"}' /etc/shadow 2>/dev/null || echo "Note: Run with sudo for full password audit"
+echo "Files in $(pwd):"
+ls -lah --color=auto
 
+echo ""
+echo "Largest files:"
+du -sh * 2>/dev/null | sort -rh | head -5
+
+
+#Show current directory 
+
+echo "Current directory: $(pwd)"
+
+echo "" 
+
+#List files with details 
+ls -lah
+
+#Count files 
+echo "" 
+echo "Total files: $( find . -maxdepth 1 -type f | wc -l)" 
 
