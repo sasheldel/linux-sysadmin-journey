@@ -95,3 +95,15 @@ This repository tracks my journey to mastering Linux and becoming a System Admin
 * **Started:** 2025-05-20
 * **Target:** System Admin Job-Readiness by **2026-12-31**
 WSL connection test
+
+## 📚 Topics Covered
+
+| Topic | Notes |
+|-------|-------|
+| I/O Redirection | [RHCSA-notes/04-io-redirection.md](RHCSA-notes/04-io-redirection.md) |
+| Grep & Text Processing | [RHCSA-notes/05-grep-text-processing.md](RHCSA-notes/05-grep-text-processing.md) |
+| Pathname Expansion | [RHCSA-notes/06-pathname-expansion.md](RHCSA-notes/06-pathname-expansion.md) |
+| Pipes & Filters | [RHCSA-notes/07-pipes-filters.md](RHCSA-notes/07-pipes-filters.md) |
+| Here Documents | [RHCSA-notes/08-here-documents.md](RHCSA-notes/08-here-documents.md) |
+| Man Pages | [RHCSA-notes/09-man-pages-bootcamp.md](RHCSA-notes/09-man-pages-bootcamp.md) |
+| Commands Cheatsheet | [RHCSA-notes/commands-cheatsheet.md](RHCSA-notes/commands-cheatsheet.md) |
