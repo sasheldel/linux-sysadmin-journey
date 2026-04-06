@@ -1,0 +1,343 @@
+# 🔐 Linux File Permissions Guide
+
+## 📌 Basic Concepts
+
+Every file and directory in Linux has three permission categories:
+
+- **User (u)**: Owner of the file
+- **Group (g)**: Group associated with the file
+- **Others (o)**: Everyone else
+
+Each category has three permissions:
+- **r** – read
+- **w** – write
+- **x** – execute
+
+### Example:
+```bash
+-rwxr-xr-- 1 user group 1234 Jan 1 12:00 example.sh
+chmod – Change permissions
+chmod 755 file.txt      # rwxr-xr-x
+chmod u+x script.sh     # Add execute for user
+chmod go-w file.txt     # Remove write for group & others
+chown – Change file owner/group 
+chown user:group file.txt
+chgrp – Change group chgrp groupname file.txt
+🧪 Special Permissions
+
+📍 SetUID (s)
+	•	Executes the file as the file’s owner
+chmod u+s script.sh
+📍 SetGID (s)
+	•	Executes as group OR new files inherit the group
+chmod g+s directory/
+📍 Sticky Bit (t)
+	•	On directories: Only owner can delete their files
+chmod +t /tmp
+🔍 Viewing Permissions
+ls -l                # View permission string
+stat file.txt        # Detailed metadata
+🗂 ACLs – Access Control Lists
+setfacl -m u:john:rwx file.txt
+getfacl file.txt
+🧠 Tips for Remembering
+	•	Use ls -l often to build familiarity.
+	•	Practice changing and breaking permissions in a test directory.
+	•	Understand the numeric values:
+	•	r=4, w=2, x=1
+	•	So chmod 754 = rwxr-xr--
+
+⸻
+
+✅ Progress Checklist
+	•	Understand read, write, execute
+	•	Practice with chmod and numeric values
+	•	Practice with SetUID, SetGID, Sticky Bit
+	•	Learn and apply ACLs
+	•	Complete a permission-based project
+# 🔐 Linux File Permissions & Ownership
+
+These notes are part of my hands-on learning journey as I study to become a Linux System Administrator. This guide covers file permissions, ownership, and special modes in Linux—along with examples, tips, and real-world use cases.
+
+---
+
+## 📖 Understanding Linux Permissions
+
+Every file and directory has three permission sets:
+
+| Class     | Applies to         |
+|-----------|--------------------|
+| `User`    | File owner         |
+| `Group`   | Group assigned     |
+| `Others`  | Everyone else      |
+
+Each class can have:
+- `r` – Read
+- `w` – Write
+- `x` – Execute
+
+Example:
+```bash
+-rwxr-xr-- 1 user group 1234 Jun 10 12:00 my_script.sh
+
+ Using chmod – Change File Permissions
+
+Octal (Numeric) Format:
+rwx.      Value
+—         0
+–x        1
+-w        2
+-wx       3
+r–        4
+r-x       5
+rw-       6
+rwx       7
+
+Symbolic Format:
+chmod 755 file.sh  # rwx for user, rx for group & others
+chmod u+x file.sh      # Add execute to user
+chmod go-w config.txt  # Remove write from group & others
+chmod a+r notes.md     # Add read for all
+👤 chown – Change File Ownership:
+chown username:group file.txt
+
+chown root:root /etc/passwd
+chown sa:shell files.txt
+
+🧑‍🤝‍🧑 chgrp – Change Group Ownership:
+chgrp developers script.py
+
+📁 Directory Permissions
+Permission
+Meaning
+r-View contents
+w-Create/delete files
+x-Enter directory (cd)
+⚠️ Without x, you can’t even cd into a readable directory!
+
+
+
+🧙 Special Bits
+Bit     Symbol    Purpose
+Setuid.   s    Execute as file owner
+Setgid.   s    New files inherit group
+Sticky    t    Only file owner can delete in dir
+chmod +s file       # setuid
+chmod g+s folder    # setgid
+chmod +t /tmp       # sticky bit
+ls -l file.txt
+ls -ld directory/
+stat my_script.sh
+Task
+Command
+Script won’t run
+chmod +x script.sh
+Share a folder with a group
+chgrp dev folder && chmod g+rwX folder
+Secure a config file
+chmod 600 config.yml
+Assign ownership to a user
+chown user:group file.txt
+
+---
+
+Let me know if you want help adding this to your actual GitHub repo or linking it inside your README.
+🧪 Symbolic Permissions - Advanced Flags
+
+You can use = to set permissions exactly (removes all others):
+chmod u=rwx,g=rx,o= file.txt
+Breakdown:
+	•	User: read, write, execute
+	•	Group: read, execute
+	•	Others: none
+🧬 Default Permissions & umask
+
+When new files or directories are created, their default permissions are controlled by umask.
+Type
+Default permscCommon umask    FiFile
+666
+022
+644
+Directory
+777
+022
+755
+
+
+umask
+
+Set temporarily (e.g., in a script):
+umask 077  # All new files will be private (600)
+
+🚫 Prevent Directory Listing (Security Trick)
+
+If you want people to access files only if they know the exact filename but not list them:
+chmod 701 private_dir
+📌 View Permissions Recursively
+
+To list all files and their permissions under a directory:
+find . -type f -exec ls -l {} \;
+find / -type f -perm -002 2>/dev/null
+
+🔒 Tighten Down Files
+
+Lock down a file so only the owner can read/write: chmod 600 secrets.txt
+
+chmod -R 755 my_project/
+chown -R sa:shell my_project/
+🧠 Hidden Insights
+	•	You can mix numeric and symbolic methods across scripts.
+	•	Always double-check permissions with stat or ls -l before and after changes.
+	•	Sticky bits are common in /tmp or shared group folders to avoid accidental deletions.
+	•	On modern Linux systems, ACLs (Access Control Lists) may override traditional permissions. Use getfacl and setfacl for those cases.
+
+⸻
+
+🛠️ Real-World Examples
+
+Task
+
+Command
+
+Script won’t run
+
+chmod +x script.sh
+
+Share a folder with a group
+
+chgrp dev folder && chmod g+rwX folder
+
+Secure a config file
+
+chmod 600 config.yml
+
+Assign ownership to a user
+
+chown user:group file.txt
+
+🧠 Cheatsheet Summary
+
+Command
+
+Purpose
+
+Example
+
+chmod
+
+Modify permissions
+
+chmod 755 file
+
+chown
+
+Change owner/group
+
+chown sa:staff file
+
+chgrp
+
+Change group only
+
+chgrp users shared.txt
+
+ls -l
+
+View permission string
+
+ls -l /var/log/syslog
+
+stat
+
+View numeric permissions
+
+stat /etc/passwd
+
+📦 Addendum: Pro-Level Permission Tips
+
+🧬 Default Permissions & umask
+
+When new files or directories are created, their default permissions are controlled by umask.
+
+Type
+
+Default perms
+
+Common umask
+
+Final perms
+
+File
+
+666
+
+022
+
+644
+
+Directory
+
+777
+
+022
+
+755
+
+umask          # Check your current umask
+umask 077      # Private by default
+
+🚫 Prevent Directory Listing
+
+Allow file access by path but block ls:
+
+chmod 701 secure_dir/
+
+🔄 Recursive Permission Changes
+
+chmod -R 755 folder/
+chown -R user:group folder/
+
+⚠️ Always check the scope of -R (recursive) operations.
+
+🔍 Find Permission Issues
+
+find . -type f -perm -002   # World-writable files
+find . -type f ! -perm 644  # Not standard file perms
+
+📁 Hidden Ownership/ACL Issues
+
+Use getfacl and setfacl for advanced permissions beyond chmod/chown.
+
+Great for setting different permissions per user/group on the same file.
+
+⚙️ Bonus Symbolic Examples
+
+chmod u=rwx,g=rx,o= file.txt  # Set exact permissions
+chmod a+x *.sh                # Make all scripts executable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\\chmod 755 -R ~/public_html
+
+
