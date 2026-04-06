@@ -98,12 +98,12 @@ WSL connection test
 
 ## 📚 Topics Covered
 
-| Topic | Notes |
-|-------|-------|
-| I/O Redirection | [RHCSA-notes/04-io-redirection.md](RHCSA-notes/04-io-redirection.md) |
-| Grep & Text Processing | [RHCSA-notes/05-grep-text-processing.md](RHCSA-notes/05-grep-text-processing.md) |
-| Pathname Expansion | [RHCSA-notes/06-pathname-expansion.md](RHCSA-notes/06-pathname-expansion.md) |
-| Pipes & Filters | [RHCSA-notes/07-pipes-filters.md](RHCSA-notes/07-pipes-filters.md) |
-| Here Documents | [RHCSA-notes/08-here-documents.md](RHCSA-notes/08-here-documents.md) |
-| Man Pages | [RHCSA-notes/09-man-pages-bootcamp.md](RHCSA-notes/09-man-pages-bootcamp.md) |
-| Commands Cheatsheet | [RHCSA-notes/commands-cheatsheet.md](RHCSA-notes/commands-cheatsheet.md) |
+| Topic | Notes | Status |
+|-------|-------|--------|
+| Man Pages Bootcamp | [01-man-pages-bootcamp.md](RHCSA-notes/01-man-pages-bootcamp.md) | ✅ |
+| I/O Redirection | [02-io-redirection.md](RHCSA-notes/02-io-redirection.md) | ✅ |
+| Grep & Text Processing | [03-grep-text-processing.md](RHCSA-notes/03-grep-text-processing.md) | ✅ |
+| Pipes & Filters | [04-pipes-filters.md](RHCSA-notes/04-pipes-filters.md) | ✅ |
+| Pathname Expansion | [05-pathname-expansion.md](RHCSA-notes/05-pathname-expansion.md) | ✅ |
+| Here Documents | [06-here-documents.md](RHCSA-notes/06-here-documents.md) | ✅ |
+| Commands Cheatsheet | [commands-cheatsheet.md](RHCSA-notes/commands-cheatsheet.md) | ✅ 
